@@ -9,13 +9,14 @@
                          <h2 class="nav-title">Daftar Transaksi</h2>
                     </div>
                 </div>
-
+                <?php echo form_open('transaksi');?>
                 <div class="d-flex justify-content-between align-items-center nav-input-container">
                     <div class="nav-input-group">
-                        <input type="text" class="nav-input" placeholder="Cari">
-                        <button class="btn-nav-input"><img src="<?= base_url()?>template/assets/img/global/search.svg" alt=""></button>
+                        <input type="text" name="cari" class="nav-input" placeholder="Cari Nama Customer">
+                        <button type="submit" class="btn-nav-input"><img src="<?= base_url()?>template/assets/img/global/search.svg" alt=""></button>
                     </div>
                 </div>
+                <?php echo form_close();?>
             </div>
 
             <div class="content">

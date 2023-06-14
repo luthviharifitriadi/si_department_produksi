@@ -15,6 +15,7 @@ class Auth extends CI_Controller {
         }
     }
 
+
     private function _login()
     {
         $username    = $this->input->post('username');
@@ -37,17 +38,17 @@ class Auth extends CI_Controller {
             }else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Wrong Password </div>');
-            redirect('/','refresh');
+            redirect('auth','refresh');
             }
         }else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Email has not been activated </div>');
-            redirect('/','refresh');
+            redirect('auth','refresh');
         }
         }else{
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
         Email is Not registered </div>');
-        redirect('/','refresh');  
+        redirect('auth','refresh');  
         }
     }
 
@@ -57,7 +58,7 @@ class Auth extends CI_Controller {
         $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
         You have been logged out! </div>');
-        redirect('/','refresh');
+        redirect('auth','refresh');
     }
 }
 

@@ -16,8 +16,15 @@ class Transaksi extends CI_Controller {
 
     public function index()
     {
+        $cari = $this->input->post('cari');
+
+        if(empty($cari)){
+            $data_transaksi = $this->m_transaksi->lists();
+        }else{
+            $data_transaksi = $this->m_transaksi->filter_transaksi($cari);
+        }
         $data= array(
-            'data_transaksi'        =>  $this->m_transaksi->lists(), 
+            'data_transaksi'   =>  $data_transaksi, 
             'isi'              => 'transaksi/v_index'
         );
         $this->load->view('layout/v_wrapper', $data, FALSE); 

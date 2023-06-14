@@ -144,165 +144,162 @@
                 <hr>
                 <div class="text-center">
                     <button type="submit"  class="btn btn-primary" onclick="EvenTotal()">Simpan</button>
-                    <button type="button" class="btn btn-danger">Batal</button>
+                    <a href="<?= base_url('transaksi' )?>" class="btn btn-danger">Batal</a>
                     </div>
                 </div>
                 <?php echo form_close(); ?>         
             </div>
-            
             </div>
         </div>
     </div>
 
     <!--modal customer -->
-
     <!-- Button trigger modal -->
 
-
-<!-- Modal customer -->
-<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Customer</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body table-responsive">
-      
-            <table id="example" class="table table-striped table-bordered"  style="width:100%">
-            <thead>
-                <tr>
-                    <th>no</th>
-                    <th>Kode</th>
-                    <th>Nama</th>
-                    <th>Telp</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="detail_cart">
-                 <?php $no=1; foreach($data_customer as $key => $value) :?>
-                <tr>
-                    <td><?= $no++ ?></td>
-                    <td><?= $value->kode ?></td>
-                    <td><?= $value->nama ?></td>
-                    <td><?= $value->telp ?></td>
-                    <td>
-                        <button id="select" class="btn btn-primary btn-sm"
-                            data-id   = "<?= $value->id ?>"
-                            data-kode = "<?= $value->kode ?>"
-                            data-nama = "<?= $value->nama ?>"
-                            data-telp = "<?= $value->telp ?>"
-                        >
-                            Select
-                        </button>
-                    </td>
-                </tr>
-                <?php endforeach; ?>    
-            </tbody>
-        </table>
-      </div>
-    
-    </div>
-  </div>
-</div>
-
-<!-- modal tambah produk -->
-<div class="modal fade" id="produkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-    <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Pilih Produk</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-    
-        <div class="col-12 mb-3">
-              <form action="" name="form" id="form">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-labe fw-bold">Cari</label>
-                <div class="col-sm-10">  
-                    <select id="mySelect2" style=" width:100%;">
-                        <option selected value="" disabled selected>Pilih Produk</option>
-                        <?php $no=1; foreach($data_barang as $key => $value) :?>
-                            <option value="<?= $value->id ?>|<?= $value->kode ?>|<?= $value->nama ?>|<?= $value->harga ?>"><?= $value->kode ?>  <?= $value->nama ?>  <?= $value->harga ?></option>
-                        <?php endforeach; ?>  
-                    </select>
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label fw-bold">Kode</label>
-                    <div class="col-sm-10">
-                        <input type="hidden" class="form-control" name="barang_id" id="barang_id" readonly>
-                        <input type="text" class="form-control" name="kode_produk" id="kode_produk" readonly>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label fw-bold">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nama_produk" id="nama_produk" readonly>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label fw-bold">Harga</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="harga_produk" id="harga_produk" readonly>
-                    </div>
-                </div>
-                <hr>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label fw-bold">Qty</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="qty_Produk" id="qty_produk"  onkeyup="EvenTotal()">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label fw-bold">Diskon (%)</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="diskon_produk" id="diskon_produk" onkeyup="EvenTotal()">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label fw-bold">Diskon (Rp)</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="diskonrp" id="diskonrp" readonly>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label fw-bold">Harga Diskon</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="harga_diskon" id="harga_diskon" class="form-control"  readonly>             
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label fw-bold">Total</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="total" class="form-control" id="total" readonly>             
-                    </div>
-                </div>
-            </div>
-            </form>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                    <button type="submit" class="add_cart btn btn-primary" onclick=" EvenTotal() ">Simpan</button>
-                </div>
-            
-            </div>
+    <!-- Modal customer -->
+    <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Customer</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body table-responsive">
+        
+                <table id="example" class="table table-striped table-bordered"  style="width:100%">
+                <thead>
+                    <tr>
+                        <th>no</th>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th>Telp</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="detail_cart">
+                    <?php $no=1; foreach($data_customer as $key => $value) :?>
+                    <tr>
+                        <td><?= $no++ ?></td>
+                        <td><?= $value->kode ?></td>
+                        <td><?= $value->nama ?></td>
+                        <td><?= $value->telp ?></td>
+                        <td>
+                            <button id="select" class="btn btn-primary btn-sm"
+                                data-id   = "<?= $value->id ?>"
+                                data-kode = "<?= $value->kode ?>"
+                                data-nama = "<?= $value->nama ?>"
+                                data-telp = "<?= $value->telp ?>"
+                            >
+                                Select
+                            </button>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>    
+                </tbody>
+            </table>
+        </div>
+        
         </div>
     </div>
+    </div>
+
+    <!-- modal tambah produk -->
+    <div class="modal fade" id="produkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Pilih Produk</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
         
+            <div class="col-12 mb-3">
+                <form action="" name="form" id="form">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-labe fw-bold">Cari</label>
+                    <div class="col-sm-10">  
+                        <select id="mySelect2" style=" width:100%;">
+                            <option selected value="" disabled selected>Pilih Produk</option>
+                            <?php $no=1; foreach($data_barang as $key => $value) :?>
+                                <option value="<?= $value->id ?>|<?= $value->kode ?>|<?= $value->nama ?>|<?= $value->harga ?>"><?= $value->kode ?>  <?= $value->nama ?>  <?= $value->harga ?></option>
+                            <?php endforeach; ?>  
+                        </select>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label fw-bold">Kode</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control" name="barang_id" id="barang_id" readonly>
+                            <input type="text" class="form-control" name="kode_produk" id="kode_produk" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label fw-bold">Nama</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="nama_produk" id="nama_produk" readonly>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label fw-bold">Harga</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="harga_produk" id="harga_produk" readonly>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label fw-bold">Qty</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="qty_Produk" id="qty_produk"  onkeyup="EvenTotal()">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label fw-bold">Diskon (%)</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="diskon_produk" id="diskon_produk" onkeyup="EvenTotal()">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label fw-bold">Diskon (Rp)</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="diskonrp" id="diskonrp" readonly>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label fw-bold">Harga Diskon</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="harga_diskon" id="harga_diskon" class="form-control"  readonly>             
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label fw-bold">Total</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="total" class="form-control" id="total" readonly>             
+                        </div>
+                    </div>
+                </div>
+                </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                        <button type="submit" class="add_cart btn btn-primary" onclick=" EvenTotal() ">Simpan</button>
+                    </div>
+                
+                </div>
+            </div>
+        </div>            
+    </div>
 </div>
-</div>
+
 <script>
     //custumor
     $(document).ready(function(){
