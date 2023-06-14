@@ -12,7 +12,7 @@
 
                 <div class="d-flex justify-content-between align-items-center nav-input-container">
                     <div class="nav-input-group">
-                        <input type="text" class="nav-input" placeholder="Cari">
+                        <input type="text" class="nav-input"  id="myInput" placeholder="Cari">
                         <button class="btn-nav-input"><img src="<?= base_url()?>template/assets/img/global/search.svg" alt=""></button>
                     </div>
                 </div>
@@ -35,15 +35,14 @@
                                 <th>Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody  id="myTable">
                              <?php $no=1; foreach($data as $key => $value) :?>
                             <tr>
                                 <td><?= $no++ ?></td>
                                 <td><?= $value->kode ?></td>
                                 <td><?= $value->nama ?></td>
                                 <td><?= $value->telp ?></td>
-                                <td>
-                                    
+                                <td>   
                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editmodal<?= $value->id ?>">
                                         Edit
                                     </button>
@@ -125,6 +124,17 @@
         </div>
      <?php endforeach; ?>   
     <!--  Akhir modal untuk edit -->
+
+    <script>
+    $(document).ready(function(){
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    </script>
     
 
     

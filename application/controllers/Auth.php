@@ -15,7 +15,6 @@ class Auth extends CI_Controller {
         }
     }
 
-
     private function _login()
     {
         $username    = $this->input->post('username');

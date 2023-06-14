@@ -55,11 +55,23 @@ class M_transaksi extends CI_Model {
         $this->db->join('m_customer', 'm_customer.id =  t_sales.cust_id');
         
         $this->db->group_by('t_sales_det.sales_id');
-        
-        
-       
-        
+         
         return $this->db->get()->result();
+    }
+
+    public function filter_transaksi($cari)
+    {
+        $this->db->select('*, t_sales.kode as kode, t_sales.id as id, SUM(t_sales_det.qty)as jumlah');    
+        $this->db->from('t_sales');
+        $this->db->join('t_sales_det', 't_sales.id =  t_sales_det.sales_id');
+        $this->db->join('m_customer', 'm_customer.id =  t_sales.cust_id');
+       
+        $this->db->group_by('t_sales_det.sales_id');
+  
+		$this->db->like('m_customer.nama',$cari);
+		
+        // Tambahkan where tanggal nya
+        return $this->db->get()->result();// Tampilkan data transaksi sesuai tanggal yang diinput oleh user pada filter
     }
     
 
@@ -73,7 +85,7 @@ class M_transaksi extends CI_Model {
         $this->db->insert('t_sales_det', $data);
     }
 
-      public function detail($id)//daftar item yang dipilih
+    public function detail($id)//daftar item yang dipilih
     {
         $this->db->select('*');    
         $this->db->from('t_sales_det');
